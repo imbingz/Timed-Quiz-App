@@ -23,6 +23,7 @@ function start() {
 
 	startTimer();
 	getAvailableQuestions();
+	getNewQuestions();
 }
 
 // TIMER-SECTION
@@ -86,3 +87,13 @@ function getAvailableQuestions() {
 	// console.log(availableQuestions);
 }
 
+//Get total question number, questions, and answer options
+function getNewQuestions() {
+	totalQuestionNumber();
+}
+//Display total question number
+function totalQuestionNumber() {
+	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
+}
+
+//
