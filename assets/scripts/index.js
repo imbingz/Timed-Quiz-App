@@ -63,7 +63,7 @@ function startTimer() {
 // Get and store the QUIZ-SECTION elements
 const quizWrapper = document.querySelector('.quiz-wrapper');
 const questionNumber = document.querySelector('.question-number');
-const qquestionText = document.querySelector('.question-text');
+const questionText = document.querySelector('.question-text');
 const optionContainer = document.querySelector('.option-container');
 const answersIndicatorContainer = document.querySelector('.answers-indicator');
 
@@ -90,10 +90,25 @@ function getAvailableQuestions() {
 //Get total question number, questions, and answer options
 function getNewQuestions() {
 	totalQuestionNumber();
+	questionDisplay();
 }
 //Display total question number
 function totalQuestionNumber() {
+	// console.log('totalQuestionNumber running');
 	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
+	// console.log(questionNumber);
 }
 
-//
+//Display randomly picked questions from QUIZ ARRAY
+function questionDisplay() {
+	console.log('questionDisplay running');
+	//Get random questions
+	let randomQuesIndex = Math.floor(Math.random() * quiz.length);
+	const randomQuestion = availableQuestions[randomQuesIndex];
+	// console.log(randomQuestion);
+	//Let currentQuestion = randomQuestion
+	currentQuestion = randomQuestion;
+	//Add question to QUESTION-TEXT
+	questionText.textContent = currentQuestion.question;
+}
+
