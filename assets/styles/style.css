@@ -1,0 +1,27 @@
+/* import google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+/* 
+colors:#333333  #cccccc #eeeeee #ffff ;
+#d3dbff #875fc0 #fbaf01 #7ee492
+#00bead
+*/
+
+/* Reset the box default style */
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Shared styles START here */
+
+body {
+	margin: 0;
+	font-family: "Open Sans", Roboto, Arial;
+	font-size: larger16px;
+	background-color: #d3dbff;
+	color: #333333;
+	line-height: 1.5rem;
+}
