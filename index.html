@@ -19,8 +19,17 @@
     <p>
       This is a timed quiz on JavaScript fundamentals that stores your high score. There is ONLY one correct answer for each question. Once you have selected your answer, you cannot change it. The total score is 100 and each question has average-weight. You can skip a question by clicking the NEXT button without any affect on your score or timer. However, an incorrect answer will subtract the time from the timer. When either the timer is 00:00 or you have clicked through all questions, the quiz is over. You will see your score board and have option try again or go back to this instruction page. Please press the START button to start.
     </p>
+    <p class="total-number"></p>
     <button class="btn start-btn">Start</button>
-
+  </div>
+  <div class="wrapper quiz-section hide" role="questions and answer options">
+    <div class="question-numbers" role="total number of questions"></div>
+    <div class="question-text" role="question"></div>
+    <div class="option-container" role="answer options"></div>
+    <div class="next-question-btn" role="button for next question">
+      <button type="button" class="btn next-btn"></button>
+    </div>
+    <div class="answers-indicator"></div>
   </div>
   
 
