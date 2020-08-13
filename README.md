@@ -17,19 +17,24 @@
 
 <a name = "context"></a>
 ### 1. Project Context - User Story
-A coding bootcamp student takes a timed quiz on JavaScript fundamentals that stores high scores to gauge his/her progress compared to other peers. 
+* A coding bootcamp student takes a timed quiz on JavaScript fundamentals that stores high scores to gauge his/her progress compared to other peers. 
+* When the start button is clicked, the timer starts and the user will be presented with a question. When a question is answered, the user will be presented with another question. 
+* When a question is answered incorrectly, the time is subtracted from the clock. 
+* When all questions are answered, or the timer reaches 0, then the quiz is over. 
+* The user can save his/her initials and score. 
 
 <a name = "objectives"></a>
 ### 2. Project Objectives
-* Create an application that generates a random password based on user-selected criteria (numbers, uppercase letters, lowercase letters and symbols).
+* Build a timed code quiz that meets the above user story with multiple-choice questions and interactive challenges. 
 * This app will run in the browser and feature dynamically updated HTML and CSS powered by JavaScript code. 
 * The password is either displayed in an alert or written to the page
-* It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.(I used the given HTML & CSS files mostly)
+* It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
 
 <a name = "Outcome"></a>
 ### 3. Outcome
 * The user interface is responsive to different devices - mobile, tablets, laptops and larger screen desktops
-* The app is dynamic and generates a random password based on user preference
+* The timer counts down with penalty for wrong answers 
+* The high score is saved 
 
 <a name = "Links"></a>
 ### 4. Links 
