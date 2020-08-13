@@ -1,20 +1,15 @@
 //Get and store the START-BUTTON
 const startBtn = document.querySelector('.start-btn');
 
-//Get and store the TIMER-Wrapper DIV
+//Get and store the TIMER-WRAPPER DIV
 const timerWrapper = document.querySelector('.timer-wrapper');
+
+// Get and store the START-SECTION-WRAPPER DIV
+const startSectionWrapper = document.querySelector('.start-section');
 
 let minutesDisplay = document.getElementById('minutesLeft');
 
 let secondsDisplay = document.getElementById('secondsLeft');
-
-// Add event handler to the START-BUTTON
-startBtn.addEventListener('click', start);
-
-// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
-function start() {
-	startTimer();
-}
 
 // TIMER
 // Set start tiime and total time varialbe
@@ -46,4 +41,16 @@ function startTimer() {
 		// Timer countdown
 		totalTime--;
 	}
+}
+
+// Add event handler to the START-BUTTON
+startBtn.addEventListener('click', start);
+
+// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
+function start() {
+	//Show Timer display
+	timerWrapper.classList.remove('hide');
+	//Hide Start-section
+	startSectionWrapper.classList.add('hide');
+	startTimer();
 }

@@ -20,8 +20,31 @@ colors:#333333  #cccccc #eeeeee #ffff ;
 body {
 	margin: 0;
 	font-family: "Open Sans", Roboto, Arial;
-	font-size: larger16px;
+	font-size: 16px;
 	background-color: #d3dbff;
 	color: #333333;
 	line-height: 1.5rem;
 }
+
+.hide {
+	display: none;
+}
+
+.wrapper {
+	max-width: 700px;
+	background-color: #ffffff;
+	margin: 40px auto;
+	padding: 30px;
+	border-radius: 8px;
+}
+
+/* Shared styles ENDS here  */
+
+/* TIMER styles */
+.timer-wrapper {
+	background-color: #d3dbff;
+}
+
+/* .timer-wrapper p.time-left {
+	text-align: right;
+} */
