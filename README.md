@@ -40,6 +40,7 @@
 <a name = "Outcome"></a>
 ### 3. Outcome
 * The user interface is responsive to different devices - mobile, tablets, laptops and larger screen desktops
+* The questions and corresponding answer options are randomly selected from quiz bank each time users play the quiz app
 * The timer counts down with penalty for wrong answers 
 * The high score is saved 
 
