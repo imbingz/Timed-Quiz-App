@@ -40,6 +40,7 @@
 <a name = "Outcome"></a>
 ### 3. Outcome
 * The user interface is responsive to different devices - mobile, tablets, laptops and larger screen desktops
+* The questions and corresponding answer options are randomly selected from quiz bank each time users play the quiz app
 * The timer counts down with penalty for wrong answers 
 * The high score is saved 
 
@@ -90,6 +91,7 @@ I would like to express my gratitude to the following parties without whom I wou
 
 * [CSS reset style sheet https://meyerweb.com](https://meyerweb.com/eric/tools/css/reset/)
 * [Quiz Bank - W3 School JavaScript Quiz Test www.w3schools.com](https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS)
+* [W3 School Code Validator validator.w3.org](https://validator.w3.org/)
 * [CSS reset style sheet https://meyerweb.com](https://meyerweb.com/eric/tools/css/reset/)
 * [Ui/Ux Case Study: A Quiz app- www.medium.com](https://medium.com/@dipupo8/ui-ux-case-study-a-quiz-app-chemquiz-19bde71cb837)
 * [Quiz UI Research - www.proprofs.com](https://www.proprofs.com/quiz-school/story.php?title=introduction-to-web-development-quiz)
