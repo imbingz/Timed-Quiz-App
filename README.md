@@ -79,7 +79,7 @@ https://github.com/imbingz/Timed-Quiz-App
 
 <a name="Credits"></a>
 ### 8. Credits:
-I would like to thank my TA Katie @fkakatie(https://github.com/fkakatie) for her guidance and efforts to help me understand the landscape of this project and some of the aspects I need to consider and learn more about before even starting to build anything. I also want to thank my fellow coder Kyle Murray @theykay(https://github.com/theykay) who took time helping me fix a bug in my original file after a day of searching for a solution. The following materials contribute to the completion of this project too. 
+I would like to express my gratitude to the following parties without whom I would not have possibly completed this project as is. 
 
 * [CSS reset style sheet https://meyerweb.com](https://meyerweb.com/eric/tools/css/reset/)
 * [Quiz Bank - W3 School JavaScript Quiz Test www.w3schools.com](https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS)
@@ -89,9 +89,6 @@ I would like to thank my TA Katie @fkakatie(https://github.com/fkakatie) for her
 * [::before and ::after CSS pseudo elements - www.bryanlrobinson.com](https://bryanlrobinson.com/blog/top-3-uses-of-after-and-before-css-pseudo-elements/)
 * [Quiz UI Inspiration - www.behance.net](https://www.behance.net/gallery/91221621/Game-Quiz-A-game-app-concept)
 
-
-
-JavaScript Quiz Test
 
 W3 validator 
 
