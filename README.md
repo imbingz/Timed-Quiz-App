@@ -2,16 +2,23 @@
 # Timed Quiz APP 
 
 ### Table of Content
-1. [Project Context - User Story](#context)
-2. [ Project Objectives ](#objectives)
-3. [ Outcome ](#Outcome)
-4. [ Project Links ](#Links)
-5. [ Screenshots ](#Screenshots)
-6. [Pseudocode - Logic Steps](#Pseudocode)
-7. [ Installation](#Installation)
-8. [ Credits](#Credits)
-9. [What I've Learned](#learned)
-10. [ License ](#License)
+- [Timed Quiz APP](#timed-quiz-app)
+    - [Table of Content](#table-of-content)
+    - [1. Project Context - User Story](#1-project-context---user-story)
+    - [2. Project Objectives](#2-project-objectives)
+    - [3. Outcome](#3-outcome)
+    - [4. Links](#4-links)
+      - [Link to Website](#link-to-website)
+      - [Link to Files](#link-to-files)
+    - [5. Screenshots](#5-screenshots)
+      - [Screenshots - Mobile View](#screenshots---mobile-view)
+      - [Screenshots - Laptop view](#screenshots---laptop-view)
+    - [6. Pseudocode - Logic Steps](#6-pseudocode---logic-steps)
+    - [7. Installation](#7-installation)
+    - [8. Credits:](#8-credits)
+    - [9. What I've Learned](#9-what-ive-learned)
+    - [10. License](#10-license)
+        - [MIT License](#mit-license)
 #
 
 
@@ -59,7 +66,7 @@ https://github.com/imbingz/Timed-Quiz-App
 * Create an event handler for the start button. 
   * When the button is licked, the timer will start to count down 
   * When the button is clicked, the question will be displayed with answer options, the start button will disappear from screen. 
-* When the queston is answered, another question with answer options will be presented
+* When the question is answered, another question with answer options will be presented
 * If the answer is wrong, time will be subtracted from the timer as penalty. 
 * When all the questions are answered, or timer is 0, whichever happens sooner, the quiz is over. 
 * Compare score of each play and store the high score along with initials.
