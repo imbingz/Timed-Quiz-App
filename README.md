@@ -56,16 +56,15 @@ https://github.com/imbingz/Timed-Quiz-App
 
 <a name = "Pseudocode"></a>
 ### 6. Pseudocode - Logic Steps
-* After the 'click' event, the users will be prompted to enter the password length. 
-* Need a variable that holds the users input. 
-* Check if the users input is a number between 8 and 128. 
-* If not(such as letters, null, space, symbols, or numbers out of range), keep prompting until the input is as desired. 
-* Ask users whether they would like their passwords to contain numbers, uppercase letters, lowercase letters and symbols. 
-* Create a variable to hold each answer. 
-* If users select no to all questions, then ask these questions again. 
-* Collect user preference and assign to a variable.
-* Generate random password characters.
-* Create a variable that holds the sum of those random characters. 
+* Create an event handler for the start button. 
+  * When the button is licked, the timer will start to count down 
+  * When the button is clicked, the question will be displayed with answer options, the start button will disappear from screen. 
+* When the queston is answered, another question with answer options will be presented
+* If the answer is wrong, time will be subtracted from the timer as penalty. 
+* When all the questions are answered, or timer is 0, whichever happens sooner, the quiz is over. 
+* Compare score of each play and store the high score along with initials.
+* Display the high score to user without displaying questions/options and start button. 
+* User has options to try again or back to homepage. 
 
 <a name="Installation"></a>
 ### 7. Installation
