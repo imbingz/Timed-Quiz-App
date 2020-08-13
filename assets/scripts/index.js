@@ -1,17 +1,32 @@
-//Get and store the START-BUTTON
-const startBtn = document.querySelector('.start-btn');
-
 //Get and store the TIMER-WRAPPER DIV
 const timerWrapper = document.querySelector('.timer-wrapper');
+//Get and Store the minutes and seconds DISPLAY SPAN
+let minutesDisplay = document.getElementById('minutesLeft');
+let secondsDisplay = document.getElementById('secondsLeft');
 
 // Get and store the START-SECTION-WRAPPER DIV
 const startSectionWrapper = document.querySelector('.start-section');
+//Get and store the START-BUTTON
+const startBtn = document.querySelector('.start-btn');
 
-let minutesDisplay = document.getElementById('minutesLeft');
 
-let secondsDisplay = document.getElementById('secondsLeft');
 
-// TIMER
+
+
+// Add event handler to the START-BUTTON
+startBtn.addEventListener('click', start);
+
+// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
+function start() {
+  //Show Timer display
+  timerWrapper.classList.remove('hide');
+  //Hide Start-section
+  startSectionWrapper.classList.add('hide');
+  startTimer();
+}
+
+
+// TIMER-SECTION
 // Set start tiime and total time varialbe
 const startingTime = 1;
 let totalTime = startingTime * 60;
@@ -43,14 +58,28 @@ function startTimer() {
 	}
 }
 
-// Add event handler to the START-BUTTON
-startBtn.addEventListener('click', start);
+// QUIZ-SECTION
 
-// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
-function start() {
-	//Show Timer display
-	timerWrapper.classList.remove('hide');
-	//Hide Start-section
-	startSectionWrapper.classList.add('hide');
-	startTimer();
-}
+// Get and store the QUIZ-SECTION elements 
+const quizWrapper = document.querySelector('.quiz-wrapper');
+const questionNumber = document.querySelector('.question-number');
+const qquestionText = document.querySelector('.question-text');
+const optionContainer = document.querySelector('.option-container');
+const answersIndicatorContainer = document.querySelector('.answers-indicator');
+
+// Set variables for QUIZ-SECTION
+let questionCounter = 0;
+let availableQuestions = [];
+
+let attemp = 0;
+let correctAnswer = 0;
+let currentQuestion;
+
+let availableOptions = [];
+
+
+//Add quizzes from quiz bank to avaialbeQuestion Array
+
+
+
+
