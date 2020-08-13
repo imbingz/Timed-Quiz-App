@@ -4,27 +4,26 @@ const timerWrapper = document.querySelector('.timer-wrapper');
 let minutesDisplay = document.getElementById('minutesLeft');
 let secondsDisplay = document.getElementById('secondsLeft');
 
-// Get and store the START-SECTION-WRAPPER DIV
-const startSectionWrapper = document.querySelector('.start-section');
+// Get and store the HOME-WRAPPER DIV
+const homeWrapper = document.querySelector('.home-wrapper');
 //Get and store the START-BUTTON
 const startBtn = document.querySelector('.start-btn');
-
-
-
-
 
 // Add event handler to the START-BUTTON
 startBtn.addEventListener('click', start);
 
 // When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
 function start() {
-  //Show Timer display
-  timerWrapper.classList.remove('hide');
-  //Hide Start-section
-  startSectionWrapper.classList.add('hide');
-  startTimer();
-}
+	//Show Timer display
+	timerWrapper.classList.remove('hide');
+	//Hide Start-section
+	homeWrapper.classList.add('hide');
+	//Show Quiz-sedtion
+	quizWrapper.classList.remove('hide');
 
+	startTimer();
+	getAvailableQuestions();
+}
 
 // TIMER-SECTION
 // Set start tiime and total time varialbe
@@ -60,7 +59,7 @@ function startTimer() {
 
 // QUIZ-SECTION
 
-// Get and store the QUIZ-SECTION elements 
+// Get and store the QUIZ-SECTION elements
 const quizWrapper = document.querySelector('.quiz-wrapper');
 const questionNumber = document.querySelector('.question-number');
 const qquestionText = document.querySelector('.question-text');
@@ -77,9 +76,13 @@ let currentQuestion;
 
 let availableOptions = [];
 
-
-//Add quizzes from quiz bank to avaialbeQuestion Array
-
-
-
+//Add quizzes from QUIZ ARRAY to AVAILABLEQUESTION ARRAY
+function getAvailableQuestions() {
+	// console.log('getAvailableQuestions running');
+	for (let i = 0; i < quiz.length; i++) {
+		// console.log(quiz[i]);
+		availableQuestions.push(quiz[i]);
+	}
+	// console.log(availableQuestions);
+}
 
