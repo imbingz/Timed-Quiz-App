@@ -38,6 +38,30 @@ body {
 	border-radius: 8px;
 }
 
+.wrapper::before,
+.wrapper::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+h1 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.btn {
+	padding: 15px 40px;
+	background-color: #875fc0;
+	color: #ffffff;
+	font-size: 1.2rem;
+	border-radius: 8px;
+	border-style: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
 /* Shared styles ENDS here  */
 
 /* TIMER styles */
@@ -48,3 +72,16 @@ body {
 /* .timer-wrapper p.time-left {
 	text-align: right;
 } */
+
+/* Start-Section Wrapper div */
+
+.home-wrapper p.total-number {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #875fc0;
+	margin: 15px 0;
+}
+
+.home-wrapper .btn {
+	margin-top: 15px;
+}
