@@ -116,8 +116,10 @@ function getNewQuestion() {
 	for (let i = 0; i < optionLen; i++) {
 		availableOptions.push(i);
 	}
-
 	
+	//Reset the optionContainer when the NEXT button is clicked
+	optionContainer.textContent = '';
+
 	// Set animation for P tags behavior
 	let animatoinDelay = 0.18;
 
