@@ -116,9 +116,6 @@ function getNewQuestion() {
 	for (let i = 0; i < optionLen; i++) {
 		availableOptions.push(i);
 	}
-	
-	//Reset the optionContainer when the NEXT button is clicked
-	optionContainer.textContent = '';
 
 	// Set animation for P tags behavior
 	let animatoinDelay = 0.18;
@@ -126,9 +123,9 @@ function getNewQuestion() {
 	//Display options on HTML
 	for (let i = 0; i < optionLen; i++) {
 		// Radom option
-		const RandomOptIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+		const randomOptIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
 		// get the position of randomOptIndex from avaialbeOptions Array
-		const index2 = availableOptions.indexOf(RandomOptIndex);
+		const index2 = availableOptions.indexOf(randomOptIndex);
 		// remove the index2 from the availableOptions Array to avoid repeating
 		availableOptions.splice(index2, 1);
 
@@ -136,7 +133,7 @@ function getNewQuestion() {
 		const option = document.createElement('p');
 		option.textContent = currentQuestion.option[i];
 		// Set 	NEW id for the answer indicator later
-		option.id = RandomOptIndex;
+		option.id = randomOptIndex;
 		//Add ANIMATION
 		option.style.animatoinDelay = animatoinDelay + 's';
 		animatoinDelay = animatoinDelay + 0.18;
@@ -161,7 +158,7 @@ function getResult(element) {
 		element.classList.add('correct');
 	} else {
 		console.log('answer is incorrect');
-		// Set Orange color for incorrect answer
+		// Set ORANGE color for incorrect answer
 		element.classList.add('incorrect');
 	}
 }
