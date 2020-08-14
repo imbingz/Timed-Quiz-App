@@ -18,7 +18,7 @@ function start() {
 	timerWrapper.classList.remove('hide');
 	//Hide Start-section
 	homeWrapper.classList.add('hide');
-	//Show Quiz-sedtion
+	//Show Quiz-section
 	quizWrapper.classList.remove('hide');
 
 	startTimer();
@@ -84,86 +84,20 @@ function setAvailableQuestions() {
 	}
 	// console.log(availableQuestions);
 }
+
 //Get total question number, questions, and answer options
 function getNewQuestion() {
-	//  console.log("getNewQuestion() running");
-	// set questions number
+	//Set questions number
 	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
 
 	//Set question texts
 	// Get random questions
 	let randomQuesIndex = Math.floor(Math.random() * availableQuestions.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
-	// console.log(randomQuestion);
-
-	// let currentQuestion be the randomly selected question
-	currentQuestion = randomQuestion;
-	// Add question text to HTML questions container
-	questionText.textContent = randomQuestion.question;
-
-	// Get the index of random quetsion and store it in a variable
-	const index1 = availableQuestions.indexOf(randomQuestion);
-
-	//Remove the 'randomQuestion' from the availableQuestion Array to avoid repeating
-	availableQuestions.splice(index1, 1);
-
-	//Set question options
-
-	//Get the length of options
-	const optionLen = currentQuestion.option.length;
-	// push options to availableOptions array
-	for (let i = 0; i < optionLen; i++) {
-		availableOptions.push(i);
-	}
-	// console.log(availableOptions);
-
-	//Reset the optionContainer when the NEXT button is clicked
-	optionContainer.textContent = '';
-
-	//Display options on HTML
-	for (let i = 0; i < optionLen; i++) {
-		// Radom option
-		const randomOptIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
-		// get the position of randomOptIndex from avaialbeOptions Array
-		const index2 = availableOptions.indexOf(randomOptIndex);
-		// remove the index2 from the availableOptions Array to avoid repeating
-		availableOptions.splice(index2, 1);
-		// console.log(randomOptIndex);
-		// console.log(availableOptions);
-		// create new divs that hold question options under option container
-		const option = document.createElement('div');
-		//loop through each option and display options on HTML
-		option.textContent = currentQuestion.option[randomOptIndex];
-		// set new id for the answer indicator later
-		option.id = randomOptIndex;
-		// Set new class name for CSS syltsheet
-
-		option.className = 'option';
-		//add eeach option div as child element of the option-container div
-		optionContainer.appendChild(option);
-		option.setAttribute('onclick', 'getResult(this)');
-	}
-
-	//Adding number to questionCounter each time
-	questionCounter++;
+	console.log(randomQuestion);
 }
 
-//Add event handler on the NEXT button
-const nextBtn = document.querySelector('.next-btn');
-nextBtn.addEventListener('click', next);
-function next() {
-	//check if all questions have answered, if so, dispaly quiz over
-	if (questionCounter === quiz.length) {
-		console.log('quiz over');
-	} else {
-		getNewQuestion();
-	}
-}
-
-// RESTRICT USERS TO CHANGE OPTION (Make all the option unclickable onice the user has selected an option)
-function unclickableOptions() {
-	const optionLen = optionContainer.children.length;
-	for (let i = 0; i < optionLen; i++) {
-		optionContainer.children[i].classList.add('already-answered');
-	}
-}
+window.onload = function() {
+	setAvailableQuestions();
+	getNewQuestion();
+};
