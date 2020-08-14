@@ -116,6 +116,8 @@ function getNewQuestion() {
 	for (let i = 0; i < optionLen; i++) {
 		availableOptions.push(i);
 	}
+
+	
 	// Set animation for P tags behavior
 	let animatoinDelay = 0.18;
 
@@ -140,10 +142,26 @@ function getNewQuestion() {
 		option.className = 'option';
 		//add eeach option p as child element of the option-container div
 		optionContainer.appendChild(option);
-		option.setAttribute('onclick', getResult(this));
+		option.setAttribute('onclick', 'getResult(this)');
 	}
 
 	questionCounter++;
+}
+
+// Get the result of current attempt question
+function getResult(element) {
+	// Set and option id (a string) from string to number
+	const id = element.id;
+	// check answer by comparing the id of clicked option
+	if (id == currentQuestion.answer) {
+		console.log('answer is correct');
+		// Set the GREEN color for the correct answer
+		element.classList.add('correct');
+	} else {
+		console.log('answer is incorrect');
+		// Set Orange color for incorrect answer
+		element.classList.add('incorrect');
+	}
 }
 
 // Add event handler for next-button
