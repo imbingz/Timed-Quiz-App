@@ -45,12 +45,14 @@ body {
 	display: table;
 }
 
+/* Shared style for all h1 */
 h1 {
 	font-size: 1.5rem;
 	font-weight: 600;
 	margin-bottom: 15px;
 }
 
+/* Shared Style for all buttons */
 .btn {
 	padding: 15px 40px;
 	background-color: #875fc0;
@@ -87,6 +89,7 @@ h1 {
 }
 
 /* Set the questions container  */
+
 .quiz-wrapper .option-container,
 .quiz-wrapper .question-number,
 .quiz-wrapper .question-text,
@@ -112,6 +115,10 @@ h1 {
 	margin-bottom: 28px;
 }
 
+.quiz-wrapper .btn {
+	margin: 30px 0;
+}
+
 .quiz-wrapper .option-container .option {
 	background-color: #eeeeee;
 	padding: 15px;
@@ -120,8 +127,9 @@ h1 {
 	cursor: pointer;
 	position: relative;
 	overflow: hidden;
-	animation: fadeIn 0.3s eeas forwards;
-	line-height: 2rem;
+	opacity: 0;
+	animation: fadeIn 0.3s ease forwards;
+	/* line-height: 2rem; */
 }
 
 /* Style how the questions pop up to the screen - animation above  */
@@ -135,7 +143,7 @@ h1 {
 }
 
 /* Style for CORRECT answer- added class via JS */
-.quiz-box .option-container .option.correct::before {
+.quiz-wrapper .option-container .option.correct::before {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -157,4 +165,32 @@ h1 {
 	}
 }
 
+.quiz-wrapper .option-container .option.correct {
+	color: #fff;
+}
 
+/* Style for INCORRECT answer- added class via JS */
+.quiz-wrapper .option-container .option.incorrect::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #fbaf01;
+	z-index: -1;
+	animation: slideInLeft .5s ease forwards;
+}
+
+@keyframes slideInLeft {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		tranform: translateX(0%);
+	}
+}
+
+.quiz-wrapper .option-container .option.incorrect {
+	color: #fff;
+}
