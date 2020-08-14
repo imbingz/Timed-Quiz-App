@@ -70,12 +70,10 @@ const answersIndicatorContainer = document.querySelector('.answers-indicator');
 // Set variables for QUIZ-SECTION
 let questionCounter = 0;
 let availableQuestions = [];
-
+let currentQuestion;
+let availableOptions = [];
 let attemp = 0;
 let correctAnswer = 0;
-let currentQuestion;
-
-let availableOptions = [];
 
 //Add quizzes from QUIZ ARRAY to AVAILABLEQUESTION ARRAY
 function getAvailableQuestions() {
@@ -91,7 +89,9 @@ function getAvailableQuestions() {
 function getNewQuestions() {
 	totalQuestionNumber();
 	questionDisplay();
+	optionDisplay();
 }
+
 //Display total question number
 function totalQuestionNumber() {
 	// console.log('totalQuestionNumber running');
@@ -101,7 +101,7 @@ function totalQuestionNumber() {
 
 //Display randomly picked questions from QUIZ ARRAY
 function questionDisplay() {
-	console.log('questionDisplay running');
+	// console.log('questionDisplay running');
 	//Get random questions
 	let randomQuesIndex = Math.floor(Math.random() * quiz.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
@@ -112,3 +112,31 @@ function questionDisplay() {
 	questionText.textContent = currentQuestion.question;
 }
 
+//Display answer options in random order
+function optionDisplay() {
+	console.log('optionDisplay running');
+	//Get answer option length
+	const optionLen = currentQuestion.option.length;
+	console.log(optionLen);
+	console.log(currentQuestion.option);
+	//Add option index to availableOptions ARRAY
+	for (let i = 0; i < optionLen; i++) {
+		availableOptions.push(i);
+	}
+	console.log(availableOptions);
+
+ //Display options in OPTION-CONTAINER
+  for (let i = 0; i < optionLen; i++) {
+    //Radom options
+		const randomOptionIndex = Math.floor(Math.random() * availableOptions.length)
+		
+
+		//create a NEW P TAG that holds question options under OPTION CONTAINNER 
+		const option = document.createElement('p')
+		//Loop through each option and display options on HTML
+		option.textContent = currentQuestion.option[randomOptionIndex];
+		//Add each option p as child element of the option-container div
+		optionContainer.appendChild(option);
+	}
+	questionCounter++;
+}
