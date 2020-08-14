@@ -100,6 +100,14 @@ function getNewQuestion() {
 	// Add question text to HTML questions container
 	questionText.textContent = randomQuestion.question;
 
+	// Get the index of random quetsion and store it in a variable
+	const index1 = availableQuestions.indexOf(randomQuestion);
+
+	//Remove the 'randomQuestion' from the availableQuestion Array to avoid repeating
+	availableQuestions.splice(index1, 1);
+	console.log(randomQuestion);
+	console.log(availableQuestions);
+
 	questionCounter++;
 }
 
@@ -110,11 +118,10 @@ nextBtn.addEventListener('click', next);
 function next() {
 	if (questionCounter === quiz.length) {
 		console.log('Quiz Over');
+	} else {
+		getNewQuestion();
 	}
 }
-
-
-
 
 window.onload = function() {
 	setAvailableQuestions();
