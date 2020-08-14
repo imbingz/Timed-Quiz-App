@@ -94,8 +94,27 @@ function getNewQuestion() {
 	// Get random questions
 	let randomQuesIndex = Math.floor(Math.random() * availableQuestions.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
-	console.log(randomQuestion);
+	// console.log(randomQuestion);
+	// let currentQuestion be the randomly selected question
+	currentQuestion = randomQuestion;
+	// Add question text to HTML questions container
+	questionText.textContent = randomQuestion.question;
+
+	questionCounter++;
 }
+
+// // Add event handler for next-button
+const nextBtn = document.querySelector('.next-btn');
+nextBtn.addEventListener('click', next);
+
+function next() {
+	if (questionCounter === quiz.length) {
+		console.log('Quiz Over');
+	}
+}
+
+
+
 
 window.onload = function() {
 	setAvailableQuestions();
