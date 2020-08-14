@@ -90,6 +90,7 @@ function getNewQuestions() {
 	totalQuestionNumber();
 	questionDisplay();
 	optionDisplay();
+	next()
 }
 
 //Display total question number
@@ -138,5 +139,21 @@ function optionDisplay() {
 		//Add each option p as child element of the option-container div
 		optionContainer.appendChild(option);
 	}
+
+	//Adding number to questionCounter each time
 	questionCounter++;
 }
+
+//Add event handler on the NEXT button 
+const nextBtn = document.querySelector('.next-btn');
+nextBtn.addEventListener('click', next)
+function next() {
+	//check if all questions have answered, if so, dispaly quiz over 
+	if (questionCounter === quiz.length) {
+		console.log('quiz over');
+
+	} else {
+		getNewQuestions();
+	}
+
+};
