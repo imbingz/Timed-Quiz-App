@@ -85,3 +85,76 @@ h1 {
 .home-wrapper .btn {
 	margin-top: 15px;
 }
+
+/* Set the questions container  */
+.quiz-wrapper .option-container,
+.quiz-wrapper .question-number,
+.quiz-wrapper .question-text,
+.quiz-wrapper .next-question-btn,
+.quiz-wrapper .answers-indicator {
+	width: 100%;
+	float: left;
+}
+
+.quiz-wrapper .question-number {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #875fc0;
+	border-bottom: 1px solid #cccccc;
+	padding-bottom: 10px;
+}
+
+.quiz-wrapper .question-text {
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding-top: 12px;
+	line-height: 1.55rem;
+	margin-bottom: 28px;
+}
+
+.quiz-wrapper .option-container .option {
+	background-color: #eeeeee;
+	padding: 15px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	animation: fadeIn 0.3s eeas forwards;
+	line-height: 2rem;
+}
+
+/* Style how the questions pop up to the screen - animation above  */
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Style for CORRECT answer- added class via JS */
+.quiz-box .option-container .option.correct::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #7ee492;
+	z-index: -1;
+	animation: slideInLeft .5s ease forwards;
+}
+
+/* Style how the color ease into to the screen - animation above  */
+@keyframes slideInLeft {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		tranform: translateX(0%);
+	}
+}
+
+
