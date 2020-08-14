@@ -105,8 +105,8 @@ function getNewQuestion() {
 
 	//Remove the 'randomQuestion' from the availableQuestion Array to avoid repeating
 	availableQuestions.splice(index1, 1);
-	console.log(randomQuestion);
-	console.log(currentQuestion.option);
+	// console.log(randomQuestion);
+	// console.log(currentQuestion.option);
 
 	//Set OPTIONS
 
@@ -115,12 +115,20 @@ function getNewQuestion() {
 	// push options to availableOptions array
 	for (let i = 0; i < optionLen; i++) {
 		availableOptions.push(i);
-		console.log('available options: ' + availableOptions);
 	}
+	// Set animation P tags behavior
+	let animatoinDelay = 0.15;
 
 	//Display options on HTML
 	for (let i = 0; i < optionLen; i++) {
 		// Radom option
+		const RandomOptIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+		// get the position of randomOptIndex from avaialbeOptions Array
+		const index2 = availableOptions.indexOf(RandomOptIndex);
+		// remove the index2 from the availableOptions Array to avoid repeating
+		availableOptions.splice(index2, 1);
+
+		// create NEW p tags that hold question options under option container
 		const option = document.createElement('p');
 		option.textContent = currentQuestion.option[i];
 		// Set 	NEW id for the answer indicator later
