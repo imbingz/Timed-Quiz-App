@@ -106,12 +106,35 @@ function getNewQuestion() {
 	//Remove the 'randomQuestion' from the availableQuestion Array to avoid repeating
 	availableQuestions.splice(index1, 1);
 	console.log(randomQuestion);
-	console.log(availableQuestions);
+	console.log(currentQuestion.option);
+
+	//Set OPTIONS
+
+	//Get the length of options
+	const optionLen = currentQuestion.option.length;
+	// push options to availableOptions array
+	for (let i = 0; i < optionLen; i++) {
+		availableOptions.push(i);
+		console.log('available options: ' + availableOptions);
+	}
+
+	//Display options on HTML
+	for (let i = 0; i < optionLen; i++) {
+		// Radom option
+		const option = document.createElement('p');
+		option.textContent = currentQuestion.option[i];
+		// Set 	NEW id for the answer indicator later
+		option.id = i;
+		//Add NEW class name
+		option.className = 'option';
+		//add eeach option p as child element of the option-container div
+		optionContainer.appendChild(option);
+	}
 
 	questionCounter++;
 }
 
-// // Add event handler for next-button
+// Add event handler for next-button
 const nextBtn = document.querySelector('.next-btn');
 nextBtn.addEventListener('click', next);
 
