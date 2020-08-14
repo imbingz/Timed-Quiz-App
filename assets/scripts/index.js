@@ -22,8 +22,8 @@ function start() {
 	quizWrapper.classList.remove('hide');
 
 	startTimer();
-	getAvailableQuestions();
-	getNewQuestions();
+	setAvailableQuestions();
+	getNewQuestion();
 }
 
 // TIMER-SECTION
@@ -72,11 +72,11 @@ let questionCounter = 0;
 let availableQuestions = [];
 let currentQuestion;
 let availableOptions = [];
-let attemp = 0;
-let correctAnswer = 0;
+let attempt = 0;
+let correctAnswers = 0;
 
 //Add quizzes from QUIZ ARRAY to AVAILABLEQUESTION ARRAY
-function getAvailableQuestions() {
+function setAvailableQuestions() {
 	// console.log('getAvailableQuestions running');
 	for (let i = 0; i < quiz.length; i++) {
 		// console.log(quiz[i]);
@@ -84,76 +84,82 @@ function getAvailableQuestions() {
 	}
 	// console.log(availableQuestions);
 }
-
 //Get total question number, questions, and answer options
-function getNewQuestions() {
-	totalQuestionNumber();
-	questionDisplay();
-	optionDisplay();
-	next()
-}
-
-//Display total question number
-function totalQuestionNumber() {
-	// console.log('totalQuestionNumber running');
+function getNewQuestion() {
+	//  console.log("getNewQuestion() running");
+	// set questions number
 	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
-	// console.log(questionNumber);
-}
 
-//Display randomly picked questions from QUIZ ARRAY
-function questionDisplay() {
-	// console.log('questionDisplay running');
-	//Get random questions
-	let randomQuesIndex = Math.floor(Math.random() * quiz.length);
+	//Set question texts
+	// Get random questions
+	let randomQuesIndex = Math.floor(Math.random() * availableQuestions.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
 	// console.log(randomQuestion);
-	//Let currentQuestion = randomQuestion
-	currentQuestion = randomQuestion;
-	//Add question to QUESTION-TEXT
-	questionText.textContent = currentQuestion.question;
-}
 
-//Display answer options in random order
-function optionDisplay() {
-	console.log('optionDisplay running');
-	//Get answer option length
+	// let currentQuestion be the randomly selected question
+	currentQuestion = randomQuestion;
+	// Add question text to HTML questions container
+	questionText.textContent = randomQuestion.question;
+
+	// Get the index of random quetsion and store it in a variable
+	const index1 = availableQuestions.indexOf(randomQuestion);
+
+	//Remove the 'randomQuestion' from the availableQuestion Array to avoid repeating
+	availableQuestions.splice(index1, 1);
+
+	//Set question options
+
+	//Get the length of options
 	const optionLen = currentQuestion.option.length;
-	console.log(optionLen);
-	console.log(currentQuestion.option);
-	//Add option index to availableOptions ARRAY
+	// push options to availableOptions array
 	for (let i = 0; i < optionLen; i++) {
 		availableOptions.push(i);
 	}
-	console.log(availableOptions);
+	// console.log(availableOptions);
 
- //Display options in OPTION-CONTAINER
-  for (let i = 0; i < optionLen; i++) {
-    //Radom options
-		const randomOptionIndex = Math.floor(Math.random() * availableOptions.length)
-		
+	//Reset the optionContainer when the NEXT button is clicked
+	optionContainer.textContent = '';
 
-		//create a NEW P TAG that holds question options under OPTION CONTAINNER 
-		const option = document.createElement('p')
-		//Loop through each option and display options on HTML
-		option.textContent = currentQuestion.option[randomOptionIndex];
-		//Add each option p as child element of the option-container div
+	// Set 0.2s delay for each question display on the HTML
+	let animationDelay = 0.2;
+
+	//Display options on HTML
+	for (let i = 0; i < optionLen; i++) {
+		// Radom option
+		const randomOptIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+		// get the position of randomOptIndex from avaialbeOptions Array
+		const index2 = availableOptions.indexOf(randomOptIndex);
+		// remove the index2 from the availableOptions Array to avoid repeating
+		availableOptions.splice(index2, 1);
+		// console.log(randomOptIndex);
+		// console.log(availableOptions);
+		// create new divs that hold question options under option container
+		const option = document.createElement('div');
+		//loop through each option and display options on HTML
+		option.textContent = currentQuestion.option[randomOptIndex];
+		// set new id for the answer indicator later
+		option.id = randomOptIndex;
+		// Set new class name for CSS syltsheet
+		option.style.animationDelay = animationDelay + 's';
+		animationDelay = animationDelay + 0.2;
+		option.className = 'option';
+		//add eeach option div as child element of the option-container div
 		optionContainer.appendChild(option);
+		option.setAttribute('onclick', 'getResult(this)');
 	}
 
 	//Adding number to questionCounter each time
 	questionCounter++;
 }
 
-//Add event handler on the NEXT button 
+//Add event handler on the NEXT button
 const nextBtn = document.querySelector('.next-btn');
-nextBtn.addEventListener('click', next)
+nextBtn.addEventListener('click', next);
 function next() {
-	//check if all questions have answered, if so, dispaly quiz over 
+	//check if all questions have answered, if so, dispaly quiz over
 	if (questionCounter === quiz.length) {
 		console.log('quiz over');
-
 	} else {
-		getNewQuestions();
+		getNewQuestion();
 	}
-
-};
+}
