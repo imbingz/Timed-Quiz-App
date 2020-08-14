@@ -120,9 +120,6 @@ function getNewQuestion() {
 	//Reset the optionContainer when the NEXT button is clicked
 	optionContainer.textContent = '';
 
-	// Set 0.2s delay for each question display on the HTML
-	let animationDelay = 0.2;
-
 	//Display options on HTML
 	for (let i = 0; i < optionLen; i++) {
 		// Radom option
@@ -140,8 +137,7 @@ function getNewQuestion() {
 		// set new id for the answer indicator later
 		option.id = randomOptIndex;
 		// Set new class name for CSS syltsheet
-		option.style.animationDelay = animationDelay + 's';
-		animationDelay = animationDelay + 0.2;
+
 		option.className = 'option';
 		//add eeach option div as child element of the option-container div
 		optionContainer.appendChild(option);
@@ -161,5 +157,13 @@ function next() {
 		console.log('quiz over');
 	} else {
 		getNewQuestion();
+	}
+}
+
+// RESTRICT USERS TO CHANGE OPTION (Make all the option unclickable onice the user has selected an option)
+function unclickableOptions() {
+	const optionLen = optionContainer.children.length;
+	for (let i = 0; i < optionLen; i++) {
+		optionContainer.children[i].classList.add('already-answered');
 	}
 }
