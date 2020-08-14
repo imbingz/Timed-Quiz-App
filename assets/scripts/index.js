@@ -116,8 +116,8 @@ function getNewQuestion() {
 	for (let i = 0; i < optionLen; i++) {
 		availableOptions.push(i);
 	}
-	// Set animation P tags behavior
-	let animatoinDelay = 0.15;
+	// Set animation for P tags behavior
+	let animatoinDelay = 0.18;
 
 	//Display options on HTML
 	for (let i = 0; i < optionLen; i++) {
@@ -132,11 +132,15 @@ function getNewQuestion() {
 		const option = document.createElement('p');
 		option.textContent = currentQuestion.option[i];
 		// Set 	NEW id for the answer indicator later
-		option.id = i;
+		option.id = RandomOptIndex;
+		//Add ANIMATION
+		option.style.animatoinDelay = animatoinDelay + 's';
+		animatoinDelay = animatoinDelay + 0.18;
 		//Add NEW class name
 		option.className = 'option';
 		//add eeach option p as child element of the option-container div
 		optionContainer.appendChild(option);
+		option.setAttribute('onclick', getResult(this));
 	}
 
 	questionCounter++;
