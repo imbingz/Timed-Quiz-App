@@ -57,7 +57,7 @@ h1 {
 	padding: 15px 40px;
 	background-color: #875fc0;
 	color: #ffffff;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	border-radius: 8px;
 	border-style: none;
 	cursor: pointer;
@@ -200,7 +200,7 @@ h1 {
 	color: #fff;
 }
 
-/* Style Answer-indicator section  */
+/* Style for ANSWER INDICATOR section  */
 .quiz-wrapper .answers-indicator {
 	border-top: 1px solid #cccccc;
 }
@@ -229,4 +229,33 @@ h1 {
 	background-size: 50%;
 	background-repeat: no-repeat;
 	background-image: url(../images/cross-white.png);
+}
+
+/* Styles for RESULT WRAPPER SECTION */
+
+.result-wrapper {
+	width: 100%;
+	text-align: center;
+	padding: 60px 0;
+	margin: 0 auto;
+}
+
+.result-wrapper h1 {
+	color: #875fc0;
+	font-weight: 700;
+	margin-top: 30px;
+}
+
+.result-wrapper input {
+	margin: 20px auto;
+	padding: 25px;
+	width: 250px;
+	height: 30px;
+	border: 1px solid #875fc0;
+	border-radius: 8px;
+}
+
+.result-wrapper .btn {
+	margin: 10px 20px;
+	width: 250px;
 }
