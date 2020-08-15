@@ -117,6 +117,9 @@ function getNewQuestion() {
 		availableOptions.push(i);
 	}
 
+	//Reset the optionContainer when the NEXT button is clicked
+	optionContainer.textContent = '';
+
 	// Set animation for P tags behavior
 	let animatoinDelay = 0.18;
 
@@ -131,7 +134,7 @@ function getNewQuestion() {
 
 		// create NEW p tags that hold question options under option container
 		const option = document.createElement('p');
-		option.textContent = currentQuestion.option[i];
+		option.textContent = currentQuestion.option[randomOptIndex];
 		// Set 	NEW id for the answer indicator later
 		option.id = randomOptIndex;
 		//Add ANIMATION
@@ -160,6 +163,14 @@ function getResult(element) {
 		console.log('answer is incorrect');
 		// Set ORANGE color for incorrect answer
 		element.classList.add('incorrect');
+		unclickableOptions();
+	}
+}
+// // RESTRICT USERS TO CHANGE OPTION (Make all the option unclickable once the user has selected an option)
+function unclickableOptions() {
+	const optionLen = optionContainer.children.length;
+	for (let i = 0; i < optionLen; i++) {
+		optionContainer.children[i].classList.add('already-answered');
 	}
 }
 
