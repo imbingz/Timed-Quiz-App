@@ -1,35 +1,40 @@
+/* STAR TO PLAY
+----------------------------------------------------------------------------- */
+// Get and store the HOME-WRAPPER DIV
+const homeWrapper = document.querySelector('.home-wrapper');
+
+//Get and store the START-BUTTON
+const startBtn = document.querySelector('.start-btn');
+// Add event handler to the START-BUTTON
+startBtn.addEventListener('click', start);
+
+// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
+function start() {
+	//Hide Start-section
+	homeWrapper.classList.add('hide');
+	//Show Timer display
+	timerWrapper.classList.remove('hide');
+	//Show Quiz-section
+	quizWrapper.classList.remove('hide');
+	//First set all questions in availableQuestion Array
+	setAvailableQuestions();
+	// Also start TIMER
+	startTimer();
+	//Then call to get each new question
+	getNewQuestion();
+	// Then create indicator of the answers
+	answerIndicator();
+}
+
+/* TIMER - SECTION
+----------------------------------------------------------------------------- */
 //Get and store the TIMER-WRAPPER DIV
 const timerWrapper = document.querySelector('.timer-wrapper');
 //Get and Store the minutes and seconds DISPLAY SPAN
 let minutesDisplay = document.getElementById('minutesLeft');
 let secondsDisplay = document.getElementById('secondsLeft');
 
-// Get and store the HOME-WRAPPER DIV
-const homeWrapper = document.querySelector('.home-wrapper');
-//Get and store the START-BUTTON
-const startBtn = document.querySelector('.start-btn');
-
-// Add event handler to the START-BUTTON
-startBtn.addEventListener('click', start);
-
-// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
-function start() {
-	//Show Timer display
-	timerWrapper.classList.remove('hide');
-	//Hide Start-section
-	homeWrapper.classList.add('hide');
-	//Show Quiz-section
-	quizWrapper.classList.remove('hide');
-
-	startTimer();
-	setAvailableQuestions();
-	getNewQuestion();
-}
-
-/* TIMER - SECTION
------------------------------------------------------------------------------ */
-
-// Set start tiime and total time varialbe
+// Set start time and total time varialbe
 const startingTime = 1;
 let totalTime = startingTime * 60;
 let timerInterval;
@@ -56,8 +61,14 @@ function startTimer() {
 		// Add the timerMinutes and timerSeconds to timerDisplay
 		minutesDisplay.textContent = timerMinutes;
 		secondsDisplay.textContent = timerSeconds;
+
 		// Timer countdown
 		totalTime--;
+
+		// Subtract INCORRECT ANSWERS PENALTY 5 seconds
+		if (incorrectAnswers > 0 && totalTime > 5) {
+			totalTime = totalTime - incorrectAnswers * 5;
+		}
 	}
 }
 
@@ -76,8 +87,8 @@ let questionCounter = 0;
 let availableQuestions = [];
 let currentQuestion;
 let availableOptions = [];
-let attempt = 0;
 let correctAnswers = 0;
+let incorrectAnswers = 0;
 
 //Add quizzes from QUIZ ARRAY to AVAILABLEQUESTION ARRAY
 function setAvailableQuestions() {
@@ -94,11 +105,13 @@ function getNewQuestion() {
 	//Set questions number
 	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
 
-	//Set question texts
+	//Set QUESTION TEXT
+
 	// Get random questions
 	let randomQuesIndex = Math.floor(Math.random() * availableQuestions.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
 	// console.log(randomQuestion);
+
 	// let currentQuestion be the randomly selected question
 	currentQuestion = randomQuestion;
 	// Add question text to HTML questions container
@@ -150,7 +163,7 @@ function getNewQuestion() {
 		optionContainer.appendChild(option);
 		option.setAttribute('onclick', 'getResult(this)');
 	}
-
+	//Adding number to questionCounter each time
 	questionCounter++;
 }
 
@@ -172,6 +185,8 @@ function getResult(element) {
 		element.classList.add('incorrect');
 		// Add indicator to incorrect mark
 		updateAnswerIndicator('incorrect');
+
+		incorrectAnswers++;
 
 		// if the answer is incorrect, then show the correct option by adding green color to the correct answer
 		const optionLen = optionContainer.children.length;
@@ -238,10 +253,26 @@ function quizOver() {
 
 /* RESULT-SECTION
 ----------------------------------------------------------------------------*/
+// Get and store the elemtns
+let saveBtn = document.getElementById('saveBtn');
+const tryAgainBtn = document.querySelector('.try-again');
+const backHomeBtn = document.querySelector('.back-home');
+
+//Set global virables
+let currentScore = 0;
+let highScore = 0;
+let initials = '';
 
 // Get and store the RESULT-WRAPPER DIV
 const resultWrapper = document.querySelector('.result-wrapper');
 
+// Calculate QUIZ RESULT
+function quizResult() {
+	currentScore = correctAnswers * 10;
+	resultWrapper.querySelector('#current-score').textContent = currentScore;
+}
+
+//
 window.onload = function() {
 	setAvailableQuestions();
 	getNewQuestion();
