@@ -26,7 +26,9 @@ function start() {
 	getNewQuestion();
 }
 
-// TIMER-SECTION
+/* TIMER - SECTION
+----------------------------------------------------------------------------- */
+
 // Set start tiime and total time varialbe
 const startingTime = 1;
 let totalTime = startingTime * 60;
@@ -59,7 +61,8 @@ function startTimer() {
 	}
 }
 
-// QUIZ-SECTION
+/* QUIZ-SECTION
+----------------------------------------------------------------------------*/
 
 // Get and store the QUIZ-SECTION elements
 const quizWrapper = document.querySelector('.quiz-wrapper');
@@ -208,7 +211,7 @@ function updateAnswerIndicator(markType) {
 	answersIndicatorContainer.children[questionCounter - 1].classList.add(markType);
 }
 
-// Add event handler for next-button
+// Add event handler for NEXT-BUTTON
 const nextBtn = document.querySelector('.next-btn');
 nextBtn.addEventListener('click', next);
 
@@ -223,13 +226,21 @@ function next() {
 
 //Show QUIZ RESULT when quiz over
 function quizOver() {
-	// Hide quiz-box
+	//Hide TIME-WRAPPER
+	timerWrapper.classList.add('hide');
+	// Hide QUIZ-WRAPPER
 	quizWrapper.classList.add('hide');
-	// Show result-box
+	// Show RESULT-WRAPPER
 	resultWrapper.classList.remove('hide');
 
 	quizResult();
 }
+
+/* RESULT-SECTION
+----------------------------------------------------------------------------*/
+
+// Get and store the RESULT-WRAPPER DIV
+const resultWrapper = document.querySelector('.result-wrapper');
 
 window.onload = function() {
 	setAvailableQuestions();
