@@ -302,6 +302,22 @@ function resetQuiz() {
 	correctAnswers = 0;
 }
 
+// Add event handler for try-again button - hide result-box, show quiz-box
+const tryAgainBtn = document.querySelector('.try-again');
+tryAgainBtn.addEventListener('click', tryAgain);
+
+function tryAgain() {
+	//hide the result-box
+	resultWrapper.classList.add('hide');
+	//Show Timer display
+	timerWrapper.classList.remove('hide');
+	// show quiz-box
+	quizWrapper.classList.remove('hide');
+	// reset quiz
+	resetQuiz();
+	startQuiz();
+}
+
 //
 window.onload = function() {
 	const totalQuestionText = homeWrapper.querySelector('.total-number');
