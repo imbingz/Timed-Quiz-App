@@ -5,29 +5,7 @@ const homeWrapper = document.querySelector('.home-wrapper');
 
 //Get and store the START-BUTTON
 const startBtn = document.querySelector('.start-btn');
-// Add event handler to the START-BUTTON
-startBtn.addEventListener('click', start);
 
-// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
-function start() {
-	//Hide Start-section
-	homeWrapper.classList.add('hide');
-	//Show Timer display
-	timerWrapper.classList.remove('hide');
-	//Show Quiz-section
-	quizWrapper.classList.remove('hide');
-	//First set all questions in availableQuestion Array
-	setAvailableQuestions();
-	// Also start TIMER
-	startTimer();
-	//Then call to get each new question
-	getNewQuestion();
-	// Then create indicator of the answers
-	answersIndicator();
-}
-
-/* TIMER - SECTION
------------------------------------------------------------------------------ */
 //Get and store the TIMER-WRAPPER DIV
 const timerWrapper = document.querySelector('.timer-wrapper');
 //Get and Store the minutes and seconds DISPLAY SPAN
@@ -35,45 +13,10 @@ let minutesDisplay = document.getElementById('minutesLeft');
 let secondsDisplay = document.getElementById('secondsLeft');
 
 // Set start time and total time varialbe
-const startingTime = 2;
+let startingTime = 1;
 let totalTime = startingTime * 60;
+let subtractTimePenalty;
 let timerInterval;
-
-function startTimer() {
-	// Set timerupdate every second
-	timerInterval = setInterval(timerCountdown, 1000);
-	// Start TIMER function
-	function timerCountdown() {
-		//Clear interval when totalTime is 0
-		if (totalTime <= 0) {
-			clearInterval(timerInterval);
-			quizOver();
-		}
-		// Set timerMinutes and timerSeconds
-		let timerMinutes = Math.floor(totalTime / 60);
-		let timerSeconds = totalTime % 60;
-
-		//Format timerMinutes and timerSeconds
-		timerMinutes = timerMinutes < 0 ? '00' + timerMinutes : timerMinutes;
-		timerMinutes = timerMinutes < 10 ? '0' + timerMinutes : timerMinutes;
-		timerSeconds = timerSeconds < 10 ? '0' + timerSeconds : timerSeconds;
-
-		// Add the timerMinutes and timerSeconds to timerDisplay
-		minutesDisplay.textContent = timerMinutes;
-		secondsDisplay.textContent = timerSeconds;
-
-		// Timer countdown
-		totalTime--;
-
-		// Subtract INCORRECT ANSWERS PENALTY 5 seconds
-		if (incorrectAnswers > 0 && totalTime > 5) {
-			totalTime = totalTime - incorrectAnswers * 5;
-		}
-	}
-}
-
-/* QUIZ-SECTION
-----------------------------------------------------------------------------*/
 
 // Get and store the QUIZ-SECTION elements
 const quizWrapper = document.querySelector('.quiz-wrapper');
@@ -89,6 +32,85 @@ let currentQuestion;
 let availableOptions = [];
 let correctAnswers = 0;
 let incorrectAnswers = 0;
+let gameActive = true;
+
+/* START-BUTTON
+----------------------------------------------------------------------------- */
+
+// Add event handler to the START-BUTTON
+startBtn.addEventListener('click', startQuiz);
+
+// When START-BUTTON is clicked, TIMER starts to count down and questions with answer options will start
+function startQuiz() {
+	//Hide Start-section
+	homeWrapper.classList.add('hide');
+	//Show Timer display
+	timerWrapper.classList.remove('hide');
+	//Show Quiz-section
+	quizWrapper.classList.remove('hide');
+	//Set gameActive
+	gameActive = true;
+	//First set all questions in availableQuestion Array
+	setAvailableQuestions();
+	// Also start TIMER
+	startTimer();
+	//Then call to get each new question
+	getNewQuestion();
+	// Then create indicator of the answers
+	answersIndicator();
+}
+
+/* TIMER - SECTION
+----------------------------------------------------------------------------- */
+
+function startTimer() {
+	// Set timerupdate every second
+	timerInterval = setInterval(timerCountdown, 1000);
+	// Start TIMER function
+	function timerCountdown() {
+		//Clear interval when totalTime is 0
+		if (totalTime <= 0 || !gameActive) {
+			clearInterval(timerInterval);
+			quizOver();
+		}
+
+		// Subtract INCORRECT ANSWERS PENALTY 5 seconds
+		subtractTimePenalty = totalTime - incorrectAnswers * 5;
+		console.log(subtractTimePenalty);
+
+		// Set timerMinutes and timerSeconds
+		let timerMinutes = Math.floor(subtractTimePenalty / 60);
+		let timerSeconds = subtractTimePenalty % 60;
+
+		//Format timerMinutes and timerSeconds
+		timerMinutes = timerMinutes < 0 ? '00' + timerMinutes : timerMinutes;
+		timerMinutes = timerMinutes < 10 ? '0' + timerMinutes : timerMinutes;
+		timerSeconds = timerSeconds < 10 ? '0' + timerSeconds : timerSeconds;
+
+		// Add the timerMinutes and timerSeconds to timerDisplay
+		minutesDisplay.textContent = timerMinutes;
+		secondsDisplay.textContent = timerSeconds;
+
+		// Timer countdown
+		totalTime--;
+	}
+}
+
+// Clear TIMER
+function clearTimer() {
+	clearInterval(timerInterval);
+	startingTime = 1;
+	subtractTimePenalty = totalTime;
+}
+
+// Restart TIMER
+function restartTimer() {
+	startingTime = 1;
+	startTimer();
+}
+
+/* QUIZ-SECTION
+----------------------------------------------------------------------------*/
 
 //Add quizzes from QUIZ ARRAY to AVAILABLEQUESTION ARRAY
 function setAvailableQuestions() {
@@ -188,6 +210,7 @@ function getResult(element) {
 		updateAnswerIndicator('incorrect');
 
 		incorrectAnswers++;
+		console.log('incorrectAnswer' + incorrectAnswers);
 
 		// if the answer is incorrect, then show the correct option by adding green color to the correct answer
 		const optionLen = optionContainer.children.length;
@@ -249,12 +272,14 @@ function quizOver() {
 	quizWrapper.classList.add('hide');
 	// Show RESULT-WRAPPER
 	resultWrapper.classList.remove('hide');
-
+	gameActive = false;
+	clearTimer();
 	quizResult();
 }
 
 /* RESULT-SECTION
 ----------------------------------------------------------------------------*/
+
 // Get and store the elemtns
 var resultWrapper = document.querySelector('.result-wrapper');
 var saveBtn = document.querySelector('.save-btn');
@@ -263,8 +288,8 @@ var backHomeBtn = document.querySelector('.back-home');
 var initialsInput = document.getElementById('initials');
 
 //Set global virables
-var currentScore = 0;
-var highScore = 0;
+var currentScore;
+var highScore;
 
 // Calculate QUIZ RESULT
 function quizResult() {
@@ -287,23 +312,32 @@ saveBtn.addEventListener('click', function(event) {
 		initials: initialsInput.value.trim(),
 		currentScore: correctAnswers * 10
 	};
-
 	// if (user.initials !== '') {
 	// 	saveBtn.disabled = false;
 	// }
 });
 
+// Local Storage Store scores and display current and high scores
+
+// check if localStorage available
+// if currenSocore = 0, highScore = curretScore
+// else, sort scoreArr and keep and display the higher score
+
 /* RESET QUIZ
-----------------------------------------------------------------------------*/
-// reset quiz
+--------------------------------------------------------------------------------------------------------------------*/
+
+// Reset quiz
 function resetQuiz() {
-	startingTime = 2;
+	console.log(totalTime);
 	questionCounter = 0;
 	correctAnswers = 0;
+	incorrectAnswers = 0;
+	clearTimer();
+	gameActive = true;
 }
 
 // Add event handler for try-again button - hide result-box, show quiz-box
-const tryAgainBtn = document.querySelector('.try-again');
+
 tryAgainBtn.addEventListener('click', tryAgain);
 
 function tryAgain() {
@@ -316,6 +350,18 @@ function tryAgain() {
 	// reset quiz
 	resetQuiz();
 	startQuiz();
+}
+
+// Add event handler for back-home button - hide result-box and show home-box
+backHomeBtn.addEventListener('click', backHome);
+
+function backHome() {
+	//hide the RESULT-WRAPPER
+	resultWrapper.classList.add('hide');
+	// show HOMEWRAPPER
+	homeWrapper.classList.remove('hide');
+	// reset quiz
+	resetQuiz();
 }
 
 //
