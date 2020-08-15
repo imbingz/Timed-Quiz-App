@@ -69,11 +69,13 @@ h1 {
 /* TIMER styles */
 .timer-wrapper {
 	background-color: #d3dbff;
+	padding-bottom: 0;
 }
 
-/* .timer-wrapper p.time-left {
-	text-align: right;
-} */
+.timer-wrapper p.time-left {
+	color: #fbaf01;
+	font-weight: 600;
+}
 
 /* Start-Section Wrapper div */
 
