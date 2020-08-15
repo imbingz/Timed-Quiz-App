@@ -199,3 +199,34 @@ h1 {
 .quiz-wrapper .option-container .option.incorrect {
 	color: #fff;
 }
+
+/* Style Answer-indicator section  */
+.quiz-wrapper .answers-indicator {
+	border-top: 1px solid #cccccc;
+}
+
+.quiz-wrapper .answers-indicator div {
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	background-color: #eeeeee;
+	border-radius: 50%;
+	margin-right: 3px;
+	margin-top: 15px;
+}
+
+.quiz-wrapper .answers-indicator div.correct {
+	background-color: #7ee492;
+	background-position: center;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-image: url(../images/check-white.png);
+}
+
+.quiz-wrapper .answers-indicator div.incorrect {
+	background-color: #fbaf01;
+	background-position: center;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-image: url(../images/cross-white.png);
+}
