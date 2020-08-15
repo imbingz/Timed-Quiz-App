@@ -23,7 +23,7 @@ function start() {
 	//Then call to get each new question
 	getNewQuestion();
 	// Then create indicator of the answers
-	answerIndicator();
+	answersIndicator();
 }
 
 /* TIMER - SECTION
@@ -35,7 +35,7 @@ let minutesDisplay = document.getElementById('minutesLeft');
 let secondsDisplay = document.getElementById('secondsLeft');
 
 // Set start time and total time varialbe
-const startingTime = 1;
+const startingTime = 2;
 let totalTime = startingTime * 60;
 let timerInterval;
 
@@ -104,19 +104,20 @@ function setAvailableQuestions() {
 function getNewQuestion() {
 	//Set questions number
 	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
+	// console.log('questionCounter ' + questionCounter);
 
 	//Set QUESTION TEXT
 
 	// Get random questions
 	let randomQuesIndex = Math.floor(Math.random() * availableQuestions.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
-	// console.log(randomQuestion);
+	// console.log('randomQuesIndex ' + randomQuesIndex);
 
 	// let currentQuestion be the randomly selected question
 	currentQuestion = randomQuestion;
 	// Add question text to HTML questions container
 	questionText.textContent = randomQuestion.question;
-
+	console.log('randomQuestion.question ' + randomQuestion.question);
 	// Get the index of random quetsion and store it in a variable
 	const index1 = availableQuestions.indexOf(randomQuestion);
 
@@ -201,6 +202,7 @@ function getResult(element) {
 
 	unclickableOptions();
 }
+
 // // RESTRICT USERS TO CHANGE OPTION (Make all the option unclickable once the user has selected an option)
 function unclickableOptions() {
 	const optionLen = optionContainer.children.length;
@@ -254,17 +256,15 @@ function quizOver() {
 /* RESULT-SECTION
 ----------------------------------------------------------------------------*/
 // Get and store the elemtns
-let saveBtn = document.getElementById('saveBtn');
-const tryAgainBtn = document.querySelector('.try-again');
-const backHomeBtn = document.querySelector('.back-home');
+var resultWrapper = document.querySelector('.result-wrapper');
+var saveBtn = document.querySelector('.save-btn');
+var tryAgainBtn = document.querySelector('.try-again');
+var backHomeBtn = document.querySelector('.back-home');
+var initialsInput = document.getElementById('initials');
 
 //Set global virables
-let currentScore = 0;
-let highScore = 0;
-let initials = '';
-
-// Get and store the RESULT-WRAPPER DIV
-const resultWrapper = document.querySelector('.result-wrapper');
+var currentScore = 0;
+var highScore = 0;
 
 // Calculate QUIZ RESULT
 function quizResult() {
@@ -272,9 +272,38 @@ function quizResult() {
 	resultWrapper.querySelector('#current-score').textContent = currentScore;
 }
 
+//Claculate HIGH SCORE
+// function highScoreRecord() {}
+
+//Add event listener to SAVE-BUTTON
+saveBtn.addEventListener('click', function(event) {
+	console.log('clicked save button');
+
+	//Prevent subnmit button default behavior
+	event.preventDefault();
+
+	// create user object from submission
+	var user = {
+		initials: initialsInput.value.trim(),
+		currentScore: correctAnswers * 10
+	};
+
+	// if (user.initials !== '') {
+	// 	saveBtn.disabled = false;
+	// }
+});
+
+/* RESET QUIZ
+----------------------------------------------------------------------------*/
+// reset quiz
+function resetQuiz() {
+	startingTime = 2;
+	questionCounter = 0;
+	correctAnswers = 0;
+}
+
 //
 window.onload = function() {
-	setAvailableQuestions();
-	getNewQuestion();
-	answersIndicator();
+	const totalQuestionText = homeWrapper.querySelector('.total-number');
+	// totalQuestionText.textContent = 'Total Number of Questions: ' + quiz.length;
 };
