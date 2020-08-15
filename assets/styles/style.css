@@ -142,6 +142,11 @@ h1 {
 	}
 }
 
+/* Restrict users to select other options once an option is selected. (For class "already-answered" added via JS )*/
+.quiz-wrapper .option-container .option.already-answered {
+	pointer-events: none;
+}
+
 /* Style for CORRECT answer- added class via JS */
 .quiz-wrapper .option-container .option.correct::before {
 	content: "";
