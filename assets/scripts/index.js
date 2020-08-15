@@ -163,8 +163,19 @@ function getResult(element) {
 		console.log('answer is incorrect');
 		// Set ORANGE color for incorrect answer
 		element.classList.add('incorrect');
-		unclickableOptions();
+
+		// if the answer is incorrect, then show the correct option by adding green color to the correct answer
+		const optionLen = optionContainer.children.length;
+		for (let i = 0; i < optionLen; i++) {
+			// console.log(optionContainer.children[i].id);
+			// console.log('current answer: ' + currentQuestion.answer);
+			if (parseInt(optionContainer.children[i].id) === currentQuestion.answer) {
+				optionContainer.children[i].classList.add('correct');
+			}
+		}
 	}
+
+	unclickableOptions();
 }
 // // RESTRICT USERS TO CHANGE OPTION (Make all the option unclickable once the user has selected an option)
 function unclickableOptions() {
