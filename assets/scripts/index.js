@@ -185,6 +185,16 @@ function unclickableOptions() {
 	}
 }
 
+// Add ANSWER INDICATOR for question answers
+function answersIndicator() {
+	answersIndicatorContainer.textContent = '';
+	const totalQuestion = quiz.length;
+	for (let i = 0; i < totalQuestion; i++) {
+		const indicator = document.createElement('div');
+		answersIndicatorContainer.appendChild(indicator);
+	}
+}
+
 // Add event handler for next-button
 const nextBtn = document.querySelector('.next-btn');
 nextBtn.addEventListener('click', next);
@@ -200,4 +210,5 @@ function next() {
 window.onload = function() {
 	setAvailableQuestions();
 	getNewQuestion();
+	answersIndicator();
 };
