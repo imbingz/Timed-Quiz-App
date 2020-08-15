@@ -159,10 +159,13 @@ function getResult(element) {
 		console.log('answer is correct');
 		// Set the GREEN color for the correct answer
 		element.classList.add('correct');
+		// Add indicator to correct mark
+		updateAnswerIndicator('correct');
 	} else {
-		console.log('answer is incorrect');
 		// Set ORANGE color for incorrect answer
 		element.classList.add('incorrect');
+		// Add indicator to incorrect mark
+		updateAnswerIndicator('incorrect');
 
 		// if the answer is incorrect, then show the correct option by adding green color to the correct answer
 		const optionLen = optionContainer.children.length;
@@ -193,6 +196,13 @@ function answersIndicator() {
 		const indicator = document.createElement('div');
 		answersIndicatorContainer.appendChild(indicator);
 	}
+}
+
+// Check question answer type - CORRECT or INCORRECT
+function updateAnswerIndicator(markType) {
+	// console.log(markType);
+	// Get each index of answer indicator and add a new class to them
+	answersIndicatorContainer.children[questionCounter - 1].classList.add(markType);
 }
 
 // Add event handler for next-button
