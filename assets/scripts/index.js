@@ -40,6 +40,7 @@ function startTimer() {
 		//Clear interval when totalTime is 0
 		if (totalTime <= 0) {
 			clearInterval(timerInterval);
+			quizOver();
 		}
 		// Set timerMinutes and timerSeconds
 		let timerMinutes = Math.floor(totalTime / 60);
@@ -161,6 +162,8 @@ function getResult(element) {
 		element.classList.add('correct');
 		// Add indicator to correct mark
 		updateAnswerIndicator('correct');
+		//Count CORRECT ANSWERS
+		correctAnswers++;
 	} else {
 		// Set ORANGE color for incorrect answer
 		element.classList.add('incorrect');
@@ -212,9 +215,20 @@ nextBtn.addEventListener('click', next);
 function next() {
 	if (questionCounter === quiz.length) {
 		console.log('Quiz Over');
+		quizOver();
 	} else {
 		getNewQuestion();
 	}
+}
+
+//Show QUIZ RESULT when quiz over
+function quizOver() {
+	// Hide quiz-box
+	quizWrapper.classList.add('hide');
+	// Show result-box
+	resultWrapper.classList.remove('hide');
+
+	quizResult();
 }
 
 window.onload = function() {
