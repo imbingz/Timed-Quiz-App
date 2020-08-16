@@ -57,9 +57,13 @@ https://github.com/imbingz/Timed-Quiz-App
 
 #### Screenshots - Mobile View
 <kbd>![screenshot-mobile](./assets/images/m1.png)</kbd>
+<kbd>![screenshot-mobile](./assets/images/m2.png)</kbd>
+<kbd>![screenshot-mobile](./assets/images/m3.png)</kbd>
 
 ####  Screenshots - Laptop view 
 <kbd>![screenshot-laptop](./assets/images/s1.png)</kbd>
+<kbd>![screenshot-laptop](./assets/images/s2.png)</kbd>
+<kbd>![screenshot-laptop](./assets/images/s3.png)</kbd>
 
 <a name = "Pseudocode"></a>
 ### 6. Pseudocode - Logic Steps
