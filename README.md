@@ -16,8 +16,7 @@
     - [6. Pseudocode - Logic Steps](#6-pseudocode---logic-steps)
     - [7. Installation](#7-installation)
     - [8. Credits:](#8-credits)
-    - [9. What I've Learned](#9-what-ive-learned)
-    - [10. License](#10-license)
+    - [9. License](#9-license)
         - [MIT License](#mit-license)
 #
 
@@ -97,22 +96,17 @@ I would like to express my gratitude to the following parties without whom I wou
 * [Quiz UI Research - www.proprofs.com](https://www.proprofs.com/quiz-school/story.php?title=introduction-to-web-development-quiz)
 * [::before and ::after CSS pseudo elements - www.bryanlrobinson.com](https://bryanlrobinson.com/blog/top-3-uses-of-after-and-before-css-pseudo-elements/)
 * [Quiz UI Inspiration - www.behance.net](https://www.behance.net/gallery/91221621/Game-Quiz-A-game-app-concept)
+* [YouTube - Load and Display High Scores from Local Storage](https://youtu.be/jfOv18lCMmw)
+*  [YouTube - Web Dev Simplified - Build A Quiz App](https://www.youtube.com/watch?v=riDzcEQbX6k&t=33s)
 
 
-W3 validator 
 
-<a name="learned"></a>
-### 9. What I've Learned
-* 
-* 
-* 
-*
-* 
-* 
+
+
 
 
 <a name="License"></a>
-### 10. License
+### 9. License
 ##### MIT License
 <p>Copyright (c) [2020] [bingzhang]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
