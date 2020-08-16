@@ -11,7 +11,7 @@
 <body>
 
   <div class="wrapper timer-wrapper hide" role="timer" aria-label="count-down-timer">
-    <p class='time-left'>Time Left <span id="minutesLeft"></span>:<span id="secondsLeft"></span></p>
+    <p class='time-left'>Time Left   <span id="minutesLeft"></span>:<span id="secondsLeft"></span></p>
   </div>
   <div class="wrapper home-wrapper" role="document">
     <h1>Instructions</h1>
@@ -21,7 +21,7 @@
     <p class="total-number"></p>
     <button class="btn start-btn">Start</button>
   </div>
-  <div class="wrapper quiz-wrapper" role="main">
+  <div class="wrapper quiz-wrapper hide" role="main">
     <div class="question-number"></div>
     <div class="question-text"></div>
     <div class="option-container"></div>
@@ -30,18 +30,27 @@
     </div>
     <div class="answers-indicator"></div>
   </div>
-  <div class='wrapper result-wrapper'>
-    <h1>Current Score: <span id="current-score">0</span></h1>
-    <h1>High Score: <span id="high-score">0</span></h1>
-    <form>
-      <input id="initials" type="text" name="initials" placeholder="Initials"><br>
-      <button class="btn save-btn" type="submit" id="saveScoreBtn" onclick="saveHighScore(event)">Save</button>
+  <div class='wrapper result-wrapper hide'>
+    <h1> Quiz Result </h1>
+    <table class="table table-light">
+      <tbody>
+        <tr>
+          <th>Current Score</th>
+          <td><span id="current-score"></span></td>
+        </tr>
+        <tr class="rowspan">
+          <th rowspan="2">High Scores</th>
+          <td><span id="high-score"></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <form id="input">
+      <input id="initials" type="text" name="initials" placeholder="Initials">
+      <button class="btn save-btn" type="submit" id="saveBtn">Save</button>
     </form>
     <div>
-      <button class="btn try-again">Try Again</button>
-    </div>
-    <div>
-      <button class="btn back-home">Back Home</button>
+      <button class="btn reset-btn try-again">Try Again</button>
+      <button class="btn reset-btn back-home">Back Home</button>
     </div>
   </div>
 
