@@ -14,8 +14,8 @@ let secondsDisplay = document.getElementById('secondsLeft');
 
 // Set start time and total time varialbe
 let startingTime = 1;
-let totalTime = startingTime * 60;
-let subtractTimePenalty;
+let totalTime;
+let subtractTimePenalty = 5;
 let timerInterval;
 
 // Get and store the QUIZ-SECTION elements
@@ -63,7 +63,26 @@ function startQuiz() {
 /* TIMER - SECTION
 ----------------------------------------------------------------------------- */
 
+function setTime(seconds) {
+	totalTime = seconds;
+
+	// Set timerMinutes and timerSeconds
+	let timerMinutes = Math.floor(totalTime / 60);
+	let timerSeconds = totalTime % 60;
+
+	//Format timerMinutes and timerSeconds
+	timerMinutes = timerMinutes < 0 ? '00' + timerMinutes : timerMinutes;
+	timerMinutes = timerMinutes < 10 ? '0' + timerMinutes : timerMinutes;
+	timerSeconds = timerSeconds < 10 ? '0' + timerSeconds : timerSeconds;
+
+	// Add the timerMinutes and timerSeconds to timerDisplay
+	minutesDisplay.textContent = timerMinutes;
+	secondsDisplay.textContent = timerSeconds;
+}
+
 function startTimer() {
+	setTime(startingTime * 60);
+
 	// Set timerupdate every second
 	timerInterval = setInterval(timerCountdown, 1000);
 	// Start TIMER function
@@ -75,38 +94,17 @@ function startTimer() {
 		}
 
 		// Subtract INCORRECT ANSWERS PENALTY 5 seconds
-		subtractTimePenalty = totalTime - incorrectAnswers * 5;
-		console.log(subtractTimePenalty);
-
-		// Set timerMinutes and timerSeconds
-		let timerMinutes = Math.floor(subtractTimePenalty / 60);
-		let timerSeconds = subtractTimePenalty % 60;
-
-		//Format timerMinutes and timerSeconds
-		timerMinutes = timerMinutes < 0 ? '00' + timerMinutes : timerMinutes;
-		timerMinutes = timerMinutes < 10 ? '0' + timerMinutes : timerMinutes;
-		timerSeconds = timerSeconds < 10 ? '0' + timerSeconds : timerSeconds;
-
-		// Add the timerMinutes and timerSeconds to timerDisplay
-		minutesDisplay.textContent = timerMinutes;
-		secondsDisplay.textContent = timerSeconds;
+		//subtractTimePenalty = totalTime - incorrectAnswers * 5;
+		//console.log(subtractTimePenalty);
 
 		// Timer countdown
-		totalTime--;
+		setTime(totalTime - 1);
 	}
 }
 
 // Clear TIMER
 function clearTimer() {
 	clearInterval(timerInterval);
-	startingTime = 1;
-	subtractTimePenalty = totalTime;
-}
-
-// Restart TIMER
-function restartTimer() {
-	startingTime = 1;
-	startTimer();
 }
 
 /* QUIZ-SECTION
@@ -210,6 +208,7 @@ function getResult(element) {
 		updateAnswerIndicator('incorrect');
 
 		incorrectAnswers++;
+		setTime(totalTime - subtractTimePenalty);
 		console.log('incorrectAnswer' + incorrectAnswers);
 
 		// if the answer is incorrect, then show the correct option by adding green color to the correct answer
@@ -272,30 +271,42 @@ function quizOver() {
 	quizWrapper.classList.add('hide');
 	// Show RESULT-WRAPPER
 	resultWrapper.classList.remove('hide');
+	saveBtn.classList.remove("hide");
 	gameActive = false;
+
 	clearTimer();
-	quizResult();
+
+	// Calculate QUIZ RESULT
+	currentScore = correctAnswers * 10;
+	resultWrapper.querySelector('#current-score').textContent = currentScore;
+
+	highScores = localStorage.getItem('highScores');
+	if (highScores == null) {
+		highScores = [];
+	} else {
+		highScores = JSON.parse(highScores);
+	}
+
+	// { initials: string, score: number }
+
+	resultWrapper.querySelector('#high-score').textContent = highScores[0] ? highScores[0].score : 0;
+
 }
 
 /* RESULT-SECTION
 ----------------------------------------------------------------------------*/
 
-// Get and store the elemtns
+// Get and store the elemtns for RESULT-SECTION
 var resultWrapper = document.querySelector('.result-wrapper');
 var saveBtn = document.querySelector('.save-btn');
 var tryAgainBtn = document.querySelector('.try-again');
 var backHomeBtn = document.querySelector('.back-home');
 var initialsInput = document.getElementById('initials');
 
-//Set global virables
+//Set global virables for RESULT-SECTION
 var currentScore;
-var highScore;
-
-// Calculate QUIZ RESULT
-function quizResult() {
-	currentScore = correctAnswers * 10;
-	resultWrapper.querySelector('#current-score').textContent = currentScore;
-}
+var highScores;
+var initials;
 
 //Claculate HIGH SCORE
 // function highScoreRecord() {}
@@ -307,14 +318,20 @@ saveBtn.addEventListener('click', function(event) {
 	//Prevent subnmit button default behavior
 	event.preventDefault();
 
-	// create user object from submission
-	var user = {
-		initials: initialsInput.value.trim(),
-		currentScore: correctAnswers * 10
-	};
-	// if (user.initials !== '') {
-	// 	saveBtn.disabled = false;
-	// }
+	// Get USER INPUT VALUE
+	initials = initialsInput.value.trim();
+
+	if (!initials) return;
+
+	highScores.push({
+		initials: initials,
+		score: currentScore
+		});
+	highScores.sort((a, b) => {
+		return b.score - a.score;
+	});
+	localStorage.setItem("highScores", JSON.stringify(highScores));
+	saveBtn.classList.add("hide");
 });
 
 // Local Storage Store scores and display current and high scores
