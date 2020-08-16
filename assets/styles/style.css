@@ -47,9 +47,10 @@ body {
 
 /* Shared style for all h1 */
 h1 {
-	font-size: 1.5rem;
-	font-weight: 600;
+	font-size: 1.8rem;
+	font-weight: 700;
 	margin-bottom: 15px;
+	color: #875fc0;
 }
 
 /* Shared Style for all buttons */
@@ -74,7 +75,8 @@ h1 {
 
 .timer-wrapper p.time-left {
 	color: #fbaf01;
-	font-weight: 600;
+	font-size: 1.2rem;
+	font-weight: 700;
 }
 
 /* Start-Section Wrapper div */
@@ -102,7 +104,7 @@ h1 {
 }
 
 .quiz-wrapper .question-number {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	font-weight: 700;
 	color: #875fc0;
 	border-bottom: 1px solid #cccccc;
@@ -245,19 +247,52 @@ h1 {
 .result-wrapper h1 {
 	color: #875fc0;
 	font-weight: 700;
-	margin-top: 30px;
+	margin: 30px;
+}
+
+.result-wrapper table {
+	width: 60%;
+	border-collapse: collapse;
+	padding: 50px;
+	margin: 50px auto 15px;
+}
+ 
+.result-wrapper table tr,  
+.result-wrapper table th,
+.result-wrapper table td {
+	width: 50%;
+	border: 1px solid #fbaf01;;
+	padding: 8px 35px;
+	text-align: left;
+	font-weight: 600;
+	line-height: 2.5rem;
+	vertical-align: center;
+}
+
+.result-wrapper table th {
+	color: #fbaf01;
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.result-wrapper tr.rowspan {
+	height: 100px;
 }
 
 .result-wrapper input {
-	margin: 20px auto;
+	margin: 20px 10px;
 	padding: 25px;
 	width: 250px;
 	height: 30px;
-	border: 1px solid #875fc0;
+	border: 1px solid #fbaf01;
 	border-radius: 8px;
 }
 
-.result-wrapper .btn {
-	margin: 10px 20px;
-	width: 250px;
+
+.result-wrapper .save-btn {
+	background-color: #fbaf01;
+}
+.result-wrapper .reset-btn{
+	margin: 30px 20px 10px;
+	/* width: 250px; */
 }
