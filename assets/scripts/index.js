@@ -92,11 +92,6 @@ function startTimer() {
 			clearInterval(timerInterval);
 			quizOver();
 		}
-
-		// Subtract INCORRECT ANSWERS PENALTY 5 seconds
-		//subtractTimePenalty = totalTime - incorrectAnswers * 5;
-		//console.log(subtractTimePenalty);
-
 		// Timer countdown
 		setTime(totalTime - 1);
 	}
@@ -112,12 +107,9 @@ function clearTimer() {
 
 //Add quizzes from QUIZ ARRAY to AVAILABLEQUESTION ARRAY
 function setAvailableQuestions() {
-	// console.log('getAvailableQuestions running');
 	for (let i = 0; i < quiz.length; i++) {
-		// console.log(quiz[i]);
 		availableQuestions.push(quiz[i]);
 	}
-	// console.log(availableQuestions);
 }
 
 //Get total question number, questions, and answer options
@@ -221,7 +213,6 @@ function getResult(element) {
 			}
 		}
 	}
-
 	unclickableOptions();
 }
 
@@ -278,18 +269,18 @@ function quizOver() {
 
 	// Calculate QUIZ RESULT
 	currentScore = correctAnswers * 10;
-	resultWrapper.querySelector('#current-score').textContent = currentScore;
+	currentScoreDisplay.textContent = currentScore;
 
-	highScores = localStorage.getItem('highScores');
-	if (highScores == null) {
-		highScores = [];
-	} else {
-		highScores = JSON.parse(highScores);
-	}
+	//Save the most recent score to localStorage
+	localStorage.setItem('currentSocre', currentScore);
 
-	// { initials: string, score: number }
+	//Check wheather there is a highScore a localStorage
+	highScores = localStorage.getItem('highScores') || [];
 
-	resultWrapper.querySelector('#high-score').textContent = highScores[0] ? highScores[0].score : 0;
+	//Display currentScore
+	currentScoreDisplay.textContent = currentScore;
+	
+	
 
 }
 
@@ -297,19 +288,26 @@ function quizOver() {
 ----------------------------------------------------------------------------*/
 
 // Get and store the elemtns for RESULT-SECTION
-var resultWrapper = document.querySelector('.result-wrapper');
-var saveBtn = document.querySelector('.save-btn');
-var tryAgainBtn = document.querySelector('.try-again');
-var backHomeBtn = document.querySelector('.back-home');
-var initialsInput = document.getElementById('initials');
+const resultWrapper = document.querySelector('.result-wrapper');
+const  saveBtn = document.querySelector('.save-btn');
+const  tryAgainBtn = document.querySelector('.try-again');
+const  backHomeBtn = document.querySelector('.back-home');
+let initialsInput = document.getElementById('initials');
+let currentScoreDisplay = document.getElementById("current-score")
+let highScoresDisplay = document.getElementById('high-scores')
+
+
 
 //Set global virables for RESULT-SECTION
-var currentScore;
-var highScores;
-var initials;
+let currentScore;
+let highScores;
+let initials;
 
-//Claculate HIGH SCORE
-// function highScoreRecord() {}
+//Get currentScore from localStorage
+currentScore = localStorage.getItem('currentScore');
+
+//Get highScores from localStorage
+highScores = JSON.parse(localStorage.getItem('highScores'));
 
 //Add event listener to SAVE-BUTTON
 saveBtn.addEventListener('click', function(event) {
@@ -321,31 +319,35 @@ saveBtn.addEventListener('click', function(event) {
 	// Get USER INPUT VALUE
 	initials = initialsInput.value.trim();
 
+	//Check whether there is USER INPUT
 	if (!initials) return;
 
-	highScores.push({
+	// Set the object score
+	const score = {
 		initials: initials,
 		score: currentScore
-		});
-	highScores.sort((a, b) => {
-		return b.score - a.score;
-	});
+	}
+
+	//Check the greater score
+	if (highScores && score.score > highScores) {
+		localStorage.setItem('highScores', socre);
+	} else if (!highScores) localStorage.setItem('highScores', score)
+
+
+	//Display highScores
+	highScoresDisplay.textContent = score.initials + " , " + score.score
+
+	//Update localStorage 
 	localStorage.setItem("highScores", JSON.stringify(highScores));
+
 	saveBtn.classList.add("hide");
 });
-
-// Local Storage Store scores and display current and high scores
-
-// check if localStorage available
-// if currenSocore = 0, highScore = curretScore
-// else, sort scoreArr and keep and display the higher score
 
 /* RESET QUIZ
 --------------------------------------------------------------------------------------------------------------------*/
 
 // Reset quiz
 function resetQuiz() {
-	console.log(totalTime);
 	questionCounter = 0;
 	correctAnswers = 0;
 	incorrectAnswers = 0;
@@ -384,5 +386,4 @@ function backHome() {
 //
 window.onload = function() {
 	const totalQuestionText = homeWrapper.querySelector('.total-number');
-	// totalQuestionText.textContent = 'Total Number of Questions: ' + quiz.length;
 };
