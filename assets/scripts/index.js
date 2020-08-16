@@ -116,27 +116,22 @@ function setAvailableQuestions() {
 function getNewQuestion() {
 	//Set questions number
 	questionNumber.textContent = 'Question ' + (questionCounter + 1) + ' of ' + quiz.length;
-	// console.log('questionCounter ' + questionCounter);
 
 	//Set QUESTION TEXT
 
 	// Get random questions
 	let randomQuesIndex = Math.floor(Math.random() * availableQuestions.length);
 	const randomQuestion = availableQuestions[randomQuesIndex];
-	// console.log('randomQuesIndex ' + randomQuesIndex);
 
 	// let currentQuestion be the randomly selected question
 	currentQuestion = randomQuestion;
 	// Add question text to HTML questions container
 	questionText.textContent = randomQuestion.question;
-	console.log('randomQuestion.question ' + randomQuestion.question);
 	// Get the index of random quetsion and store it in a variable
 	const index1 = availableQuestions.indexOf(randomQuestion);
 
 	//Remove the 'randomQuestion' from the availableQuestion Array to avoid repeating
 	availableQuestions.splice(index1, 1);
-	// console.log(randomQuestion);
-	// console.log(currentQuestion.option);
 
 	//Set OPTIONS
 
@@ -186,7 +181,6 @@ function getResult(element) {
 	const id = element.id;
 	// check answer by comparing the id of clicked option
 	if (id == currentQuestion.answer) {
-		console.log('answer is correct');
 		// Set the GREEN color for the correct answer
 		element.classList.add('correct');
 		// Add indicator to correct mark
@@ -201,13 +195,10 @@ function getResult(element) {
 
 		incorrectAnswers++;
 		setTime(totalTime - subtractTimePenalty);
-		console.log('incorrectAnswer' + incorrectAnswers);
 
 		// if the answer is incorrect, then show the correct option by adding green color to the correct answer
 		const optionLen = optionContainer.children.length;
 		for (let i = 0; i < optionLen; i++) {
-			// console.log(optionContainer.children[i].id);
-			// console.log('current answer: ' + currentQuestion.answer);
 			if (parseInt(optionContainer.children[i].id) === currentQuestion.answer) {
 				optionContainer.children[i].classList.add('correct');
 			}
@@ -236,7 +227,6 @@ function answersIndicator() {
 
 // Check question answer type - CORRECT or INCORRECT
 function updateAnswerIndicator(markType) {
-	// console.log(markType);
 	// Get each index of answer indicator and add a new class to them
 	answersIndicatorContainer.children[questionCounter - 1].classList.add(markType);
 }
@@ -247,7 +237,6 @@ nextBtn.addEventListener('click', next);
 
 function next() {
 	if (questionCounter === quiz.length) {
-		console.log('Quiz Over');
 		quizOver();
 	} else {
 		getNewQuestion();
@@ -311,8 +300,6 @@ highScores = JSON.parse(localStorage.getItem('highScores'));
 
 //Add event listener to SAVE-BUTTON
 saveBtn.addEventListener('click', function(event) {
-	console.log('clicked save button');
-
 	//Prevent subnmit button default behavior
 	event.preventDefault();
 
